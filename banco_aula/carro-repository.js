@@ -30,6 +30,97 @@ module.exports = function (database) {
                 });
             })
         },
+        maisCaroCarro : async function(){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT MAX (valor) FROM carros`, function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    
+                    resolve(resultado)
+                });
+            })
+        },        
+        maisBaratoCarro : async function(){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT MIN (valor) FROM carros`, function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
+        maisBaratoProMaisCaroCarro : async function(){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT nome, valor FROM carros ORDER BY valor`, function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
+        maisCaroProMaisBaratoCarro : async function(){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT nome, valor FROM carros ORDER BY valor DESC`, function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
+        numeroDeMaiorProMenorCarro : async function(){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT nome, ano FROM carros ORDER BY ano DESC`, function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
+        numeroDeMenorProMaiorCarro : async function(){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT nome, ano FROM carros ORDER BY valor`, function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
+        corDoCarro : async function(nome){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT * FROM carros WHERE cor=?`, [nome], function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
+        anoDoCarro : async function(nome){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT * FROM carros WHERE ano=?`, [nome], function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
+        numeroDeCarro : async function(){
+            return new Promise(async (resolve, reject) => {
+                await database.all(`SELECT count (nome) FROM carros`, function(err, resultado) {
+                    if(err) {
+                        reject(err)
+                    }
+                    resolve(resultado)
+                });
+            })
+        },
         mostraCarros : async function(){
             return new Promise(async (resolve, reject) => {
                 var carros = []
