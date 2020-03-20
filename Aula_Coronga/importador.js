@@ -76,8 +76,7 @@ axios.get('https://api.covid19api.com/summary')
         })
     }
     function maiorMortalidade(){
-        //o valor esta correto só falta transformar esse numero quebrado em %
-        db.all('SELECT (TotalDeaths/100)*TotalConfirmed as Mortalidade FROM corona ORDER BY (TotalDeaths/100)*TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
+        db.all('SELECT (TotalDeaths*100)/TotalConfirmed as Mortalidade FROM corona ORDER BY (TotalDeaths*100)/TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
             if(erro){
                 console.log(erro)
             }
@@ -86,8 +85,7 @@ axios.get('https://api.covid19api.com/summary')
     }
     
     function maiorRecuperacao(){
-        //o valor esta correto só falta transformar esse numero quebrado em %
-        db.all('SELECT (TotalRecovered/100)*TotalConfirmed as Recuperados FROM corona ORDER BY (TotalRecovered/100)*TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
+        db.all('SELECT (TotalRecovered*100)/TotalConfirmed as Recuperados FROM corona ORDER BY (TotalRecovered*100)/TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
             if(erro){
                 console.log(erro)
             }
