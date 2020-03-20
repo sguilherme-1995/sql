@@ -76,7 +76,7 @@ axios.get('https://api.covid19api.com/summary')
         })
     }
     function maiorMortalidade(){
-        db.all('SELECT (TotalDeaths*100)/TotalConfirmed as Mortalidade FROM corona ORDER BY (TotalDeaths*100)/TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
+        db.all('SELECT (Country),(TotalDeaths*100)/TotalConfirmed as Mortalidade FROM corona ORDER BY (TotalDeaths*100)/TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
             if(erro){
                 console.log(erro)
             }
@@ -85,7 +85,7 @@ axios.get('https://api.covid19api.com/summary')
     }
     
     function maiorRecuperacao(){
-        db.all('SELECT (TotalRecovered*100)/TotalConfirmed as Recuperados FROM corona ORDER BY (TotalRecovered*100)/TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
+        db.all('SELECT (Country),(TotalRecovered*100)/TotalConfirmed as Recuperados FROM corona ORDER BY (TotalRecovered*100)/TotalConfirmed DESC LIMIT 10',(erro,resultado) => {
             if(erro){
                 console.log(erro)
             }
@@ -123,6 +123,4 @@ axios.get('https://api.covid19api.com/summary')
         }else if(choice.toUpperCase() === "H"){
             maiorRecuperacao()
         }
-
-
     // }while(choice.toUpperCase() !== "S")
