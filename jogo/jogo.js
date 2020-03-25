@@ -32,7 +32,7 @@ console.clear()
 console.log(chalk.black.bgGreen.bold('========================= JOGO DE DIGITAR ========================='))
 
 var nome = user.question('Digite seu nome: ').toUpperCase()
-var entrada = user.question('Digite o máximo de letras possiveis e pressione enter:\n')
+var entrada = user.question('Digite o maximo de letras possiveis e pressione enter:\n')
 var pontuacao = entrada.length
 
 var novoJogador = jogador(nome, pontuacao)
